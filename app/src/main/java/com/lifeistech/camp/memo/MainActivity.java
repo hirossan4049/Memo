@@ -46,15 +46,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void execute(Realm realm) {
 
-//                        RealmResults<Memo> results = realm.where(Memo.class).equalTo("updateDate", memo.updateDate).find();
-//                        results.get(0).deleteFromRealm();
                         Memo realmMemo = realm.where(Memo.class).equalTo("updateDate", memo.updateDate).findFirst();
                         realmMemo.deleteFromRealm();
-
                     }
                 });
-
-
+                setMemoList();
                 Log.d(memo.updateDate,memo.title);
                 return false;
             }
