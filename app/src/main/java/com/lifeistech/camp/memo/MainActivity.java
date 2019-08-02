@@ -2,6 +2,7 @@ package com.lifeistech.camp.memo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         listView = (ListView)findViewById(R.id.listView);
 
+        //clickで編集
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -33,7 +35,28 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,DetailActivity.class);
                 intent.putExtra("updateDate",memo.updateDate);
                 startActivity(intent);
+            }
+        });
+        //長押しで消去
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final Memo memo = (Memo)parent.getItemAtPosition(position);
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
 
+//                        RealmResults<Memo> results = realm.where(Memo.class).equalTo("updateDate", memo.updateDate).find();
+//                        results.get(0).deleteFromRealm();
+                        Memo realmMemo = realm.where(Memo.class).equalTo("updateDate", memo.updateDate).findFirst();
+                        realmMemo.deleteFromRealm();
+
+                    }
+                });
+
+
+                Log.d(memo.updateDate,memo.title);
+                return false;
             }
         });
     }
