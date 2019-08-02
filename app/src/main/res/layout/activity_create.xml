@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#2196F3"
             android:onClick="create"
-            android:text="Button"
+            android:text="作成"
             tools:text="作成" />
     </LinearLayout>
 </RelativeLayout>

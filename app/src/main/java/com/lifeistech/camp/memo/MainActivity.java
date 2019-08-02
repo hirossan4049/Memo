@@ -1,5 +1,7 @@
 package com.lifeistech.camp.memo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
         });
         //長押しで消去
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            DeleteDialog dialog = new DeleteDialog();
+//            dialog.show(getFragmentManager(),"sample");
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("今からアプリを起動してもいいですか？")
+//                            .setTitle("ドロイド君より")
+////            .setIcon(R.drawable.dialog_icon)
+//            .setPositiveButton(“起動”, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//            // ボタンをクリックしたときの動作
+//                        }
+//                    });
+//            builder.show();
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 final Memo memo = (Memo)parent.getItemAtPosition(position);
