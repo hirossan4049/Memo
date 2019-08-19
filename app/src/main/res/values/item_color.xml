@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list">
+    <item>tag:RED</item>
+    <item>tag:BLUE</item>
+    <item>tag:GREEN</item>
+    <item>tag:YELLOW</item>
+</string-array>
+</resources>

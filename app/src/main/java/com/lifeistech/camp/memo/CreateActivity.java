@@ -1,11 +1,16 @@
 package com.lifeistech.camp.memo;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ResourceCursorAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +24,11 @@ public class CreateActivity extends AppCompatActivity {
     public EditText contentEditText;
     //realm
     public Realm realm;
+    public int weather_status;
+    //weather_id_button
+    Button sun;
+    Button rain;
+    Button cloud;
 
 
     @Override
@@ -30,6 +40,11 @@ public class CreateActivity extends AppCompatActivity {
 
         titleEditText = (EditText)findViewById(R.id.titleEditText);
         contentEditText = (EditText)findViewById(R.id.contentEditText);
+        weather_status = 0;
+        //weather_button
+        sun = (Button)findViewById(R.id.sun);
+        rain = (Button)findViewById(R.id.rain);
+        cloud = (Button)findViewById(R.id.cloud);
     }
 
     @Override
@@ -47,6 +62,7 @@ public class CreateActivity extends AppCompatActivity {
                 memo.title = title;
                 memo.updateDate = updateDate;
                 memo.content = content;
+                memo.wether_status_realm = weather_status;
             }
 
         });
@@ -90,6 +106,30 @@ public class CreateActivity extends AppCompatActivity {
         Log.d("Memo",memo.title);
         Log.d("Memo",memo.updateDate);
         Log.d("Memo",memo.content);
+    }
+
+
+    public void sun(View v){
+        weather_status = 1;
+        Log.d("Weather_Click",weather_status+"");
+        sun.setBackgroundColor(Color.RED);
+        rain.setBackgroundResource(android.R.drawable.btn_default);
+        cloud.setBackgroundResource(android.R.drawable.btn_default);
+//        sun.setBackgroundResource(android.R.drawable.btn_dialog);　
+    }
+    public void cloud(View v){
+        weather_status = 2;
+        Log.d("Weather_Click",weather_status+"");
+        cloud.setBackgroundColor(Color.RED);
+        sun.setBackgroundResource(android.R.drawable.btn_default);
+        rain.setBackgroundResource(android.R.drawable.btn_default);
+    }
+    public void rain(View v){
+        weather_status = 3;
+        Log.d("Weather_Click",weather_status+"");
+        rain.setBackgroundColor(Color.RED);
+        sun.setBackgroundResource(android.R.drawable.btn_default);
+        cloud.setBackgroundResource(android.R.drawable.btn_default);
 
 
     }

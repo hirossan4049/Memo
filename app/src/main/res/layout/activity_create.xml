@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,17 +22,67 @@
         <EditText
             android:id="@+id/contentEditText"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="251dp"
             android:layout_weight="1"
             android:ems="10"
             android:gravity="top"
             android:hint="メモ"
             android:inputType="textPersonName" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default"
+                android:onClick="sun"
+                android:tag="0"
+                android:text="晴れ" />
+
+            <Button
+                android:id="@+id/cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default"
+                android:onClick="cloud"
+                android:tag="1"
+                android:text="曇り" />
+
+            <Button
+                android:id="@+id/rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default"
+                android:onClick="rain"
+                android:tag="2"
+                android:text="雨" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:entries="@array/list"></Spinner>
+        </LinearLayout>
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/null"
             android:backgroundTint="#2196F3"
             android:onClick="create"
             android:text="作成"

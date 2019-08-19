@@ -9,4 +9,6 @@ public class Memo extends RealmObject {
     public String updateDate;
 //    content
     public String content;
+    //wether_status
+    public Integer wether_status_realm;
 }

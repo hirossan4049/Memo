@@ -1,13 +1,18 @@
 package com.lifeistech.camp.memo;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         listView = (ListView)findViewById(R.id.listView);
 
+
         //clickで編集
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -36,7 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 Memo memo = (Memo) parent.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this,DetailActivity.class);
                 intent.putExtra("updateDate",memo.updateDate);
-                startActivity(intent);
+
+                switch (view.getId()) {
+                    case R.id.checkBox:
+                        break;
+                    default:
+                        startActivity(intent);
+                        break;
+                }
+
+//                startActivity(intent);
             }
         });
         //長押しで消去
@@ -66,9 +81,12 @@ public class MainActivity extends AppCompatActivity {
                 });
                 setMemoList();
                 Log.d(memo.updateDate,memo.title);
+
                 return false;
             }
         });
+
+
     }
 
     public void setMemoList(){
@@ -78,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         MemoAdapter adapter = new MemoAdapter(this,R.layout.layout_item_memo,items);
         listView.setAdapter(adapter);
+//        Log.d("REALM_ListView_text",adapter+"");
     }
 
     @Override
@@ -93,9 +112,12 @@ public class MainActivity extends AppCompatActivity {
         realm.close();
     }
 
+
     public void create(View view){
         Intent intent = new Intent(this,CreateActivity.class);
         startActivity(intent);
     }
+
+
 
 }
