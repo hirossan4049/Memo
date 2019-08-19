@@ -5,16 +5,21 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ResourceCursorAdapter;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import io.realm.Realm;
 
@@ -25,6 +30,7 @@ public class CreateActivity extends AppCompatActivity {
     //realm
     public Realm realm;
     public int weather_status;
+    public String selected_color;
     //weather_id_button
     Button sun;
     Button rain;
@@ -45,6 +51,25 @@ public class CreateActivity extends AppCompatActivity {
         sun = (Button)findViewById(R.id.sun);
         rain = (Button)findViewById(R.id.rain);
         cloud = (Button)findViewById(R.id.cloud);
+
+
+        //============スピナー系==============//
+        //Spinner 取得
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        //Listener
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // スピナー要素の文字列を取得
+                String selectedItemString = (String) parent.getItemAtPosition(position);
+                Log.d("selected_color",selectedItemString);
+                selected_color = selectedItemString;
+            }
+            //選択されていないときの処理
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override

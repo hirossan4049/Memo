@@ -82,7 +82,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/null"
+            android:layout_alignStart="@+id/button"
             android:backgroundTint="#2196F3"
             android:onClick="create"
             android:text="作成"
